@@ -1,0 +1,90 @@
+1. What is a function?
+   A function which takes some input and perform logical operation and resturns an output.
+   ex: function abc(x){
+   return x*x;
+   }
+   abc(5);
+2. Pure function/First class function?
+   A function can be passed as an argument to other functions, can be returned by another function and can be assigned as a value to a variable.
+   Ex:
+   function sayHello() {
+   return "Hello, ";
+   }
+   function greeting(helloMessage, name) {
+   console.log(helloMessage() + name);
+   }
+   // Pass `sayHello` as an argument to `greeting` function
+   greeting(sayHello, "JavaScript!");
+   // Hello, JavaScript!
+3. What is clouser?
+    A closure is the combination of a function bundled together (enclosed) with references to its surrounding state (the lexical environment). In other words, a closure gives you access to an outer function's scope from an inner function.
+    Ex:
+    function init() {
+    var name = "Mozilla"; // name is a local variable created by init
+    function displayName() {
+        // displayName() is the inner function, that forms the closure
+        console.log(name); // use variable declared in the parent function
+    }
+    displayName();
+    }
+    init();
+4. Scope in JS?
+    a. Local Scope (let, const)
+    b. Global Scope (var)
+5. Lexical Environment?
+    When we have a nested group of functions, the inner function has access to variables and other resources of the parent function. This means child functions are lexically bound to the execution context of their parents.
+6. Function Scope-input/Output based questions?
+    for(let i=0; i<5; i++>){
+        setTimeout(function(){
+            console.log(i)
+        }, i*1000);
+    }
+7. global, local scope and hoisting:
+    var x = 10;
+    function abc(){
+        console.log(x);//undefined, as x is defined inside the function and variable is hoisted
+        var x = 20;
+    } abc();
+8. Params vs Arguments:
+    function abc(a, b){//parameters
+        return a+b;
+    } abc(4,5);//arguments
+9. spread vs Rest operators:
+    function abc(...arr){//rest operator
+        console.log(..arr);
+    }
+    const x = [3,4];
+    abc(...x);//spread operator
+    ex:
+    function abc(a, ...arr, x,y){
+        console.log(a, arr, x, y);
+    }
+    abc(2,4,5,5,6);
+    will get a syntax error: VM479:1 Uncaught SyntaxError: Rest parameter must be last formal parameter
+10. call back function:
+    A callback function is a function passed into another function as an argument, which is then invoked inside the outer function to complete some kind of routine or action.
+    ex:
+    let value = 1;
+
+    doSomething(() => {
+    value = 2;
+    });
+
+    console.log(value);
+
+    Note: If doSomething calls the callback synchronously, then the last statement would log 2 because value = 2 is synchronously executed; otherwise, if the callback is asynchronous, the last statement would log 1 because value = 2 is only executed after the console.log statement.
+    Synchronus callbacks: map, foreach
+    ===>
+    Final Thoughts
+    As always, the choice between map() and forEach() will depend on your use case. If you plan to change, alternate, or use the data, you should pick map(), because it returns a new array with the transformed data.
+
+    But, if you won't need the returned array, don't use map() - instead use forEach() or even a for loop.
+    Asynchronus callbacks: settimeout, .then
+    ex:
+    const x =10;
+    setTimeout(function(){
+        console.log(x); this will return later.
+    },0);
+    console.log(x+10);//this will return first
+
+
