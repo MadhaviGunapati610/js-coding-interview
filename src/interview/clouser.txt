@@ -1,0 +1,95 @@
+1. Clouser, what will be logged in the console?
+
+let count =0;
+(function printCount(){
+    if(count === 0){
+        let count = 1;//shadowing
+        console.log(count);
+    }
+    console.log(count)
+})();// return's 1 and 0. Because we don't have return statement here
+2. Write a function that will allow you to do this:
+    var addSix = createBase(6);
+    addSix(10);//return 16
+    addSix(21); //return 27
+    function createBase(x){
+        return function(y){
+            return x+y;
+        }
+    }
+
+3. Time Optimization
+    function find(){
+        let a=[];
+        for(let i=0; i<100000; i++){
+            a[i]=i*i;
+        }
+       // console.log(a[index]); instead of this line, we create clouser as below
+        return function name(index){
+        console.log(a[index])
+        }
+    }
+    console.time("6");
+    const clouser = find();
+    console.log(clouser(6));
+    console.timeEnd("6");
+    console.time("12");
+    console.log(clouser(12));
+    console.timeEnd("12");
+
+4. Block scope and setTimeout
+function a(){
+    for(var i=0; i<3; i++){//in es6 we can just use let instead of var to print 0,1,2
+        function inner(i){//remove this line if you use let
+        setTimeout(function log(){//setTimeout only runs after complete colde run successfully.
+            console.log("aa",i);
+        }, i*1000);
+        }//remove this line if you use let
+        inner(i);//remove this line if you use let
+    }
+}
+a();
+
+5. how would you use a clouser to create a private variable?
+    function counter(){
+        var _couner = 0;
+        function add(increment){
+            _couner += increment;
+        }
+        function retrive(){
+            return _couner;
+        }
+        return {
+            add,
+            retrive,
+        };
+    }
+
+    const c = counter();
+    c.add(4);
+    c.add(44);
+    console.log(c.retrive());
+
+    6. Make this only runs once?
+    function counter(){
+        let called = 0;
+        return function(){
+        if(called >0){
+            console.log("already subscribed");
+            
+        } else {
+            console.log("subscribe!")
+            called++;
+        }
+        }
+    }
+    let x = counter();
+   x();
+   x();
+   x();
+   x();
+
+   7. difference between clouser and scope
+   clouser is funtion which is created inside another function(three scopes global, local and inner scopes)
+   scope is an availability of a variable(two types local and global);
+
