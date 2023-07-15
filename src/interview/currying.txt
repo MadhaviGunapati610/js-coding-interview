@@ -1,0 +1,85 @@
+1. create a currying function for below example
+Note: In currying a function takes one argument at a time and returning a new function by expecting a new argument.
+function add(a,b,c){
+    return a+b+c;
+}
+add(1,3,5);
+
+Curried exaple:
+function add(a){
+    return (b)=>(c)=>a+b+c;
+}
+add(2)(4)(5);
+
+2. Why do we use currying?
+    a. to avoid passing a same variable again and again
+    b. to create a high order functions
+    c. to make a function more pure
+3. implement function currying sum(2)(3)(4);
+    function sum(a){
+        return function(b){
+            return function(c){
+                return a+b+c;
+            }
+        }
+    }
+
+    console.log(sum(2)(3)(4));
+
+4. infinite currying add(1)(2)(3)...(n);
+    function add(a){
+        return function(b){
+            console.log(b);
+            if(b) return add(a+b);
+            return a;
+        }
+    }
+    console.log(add(1)(2)(3)(4)());//last function call should be empty in infinite loop
+
+5. curry or partial function
+function add(a){
+    return function(b,c){
+        return a+b+c;
+    }
+};
+const partialFunction = add(5);
+console.log(partialFunction(4,6));
+
+6. Manipulating DOM with currying
+    1. create a html element with id
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Document</title>
+            
+        </head>
+        <body>
+            <h1>This is a Heading</h1>
+        <p id="xid">This is a paragraph.</p>
+        <script src="./currying.js"></script>
+        </body>
+        </html>
+    2. create a currying function which takes an id of a html element
+        function changeMe(id)
+            { 
+            return function(text){
+            console.log(text, "#"+id);
+            let abc = document.getElementById(id);
+            console.log(abc);
+            abc.innerHTML = text;
+            console.log(abc);
+            }
+            }
+            const x = changeMe("xid");
+            console.log(x("This is Krishna"));
+
+7. curry() implementation
+function sum(func){
+    console.log(func.length, "func length");
+}
+
+console.log(sum(2)(3)(4)(6));
+
+
