@@ -3,7 +3,7 @@ import React from 'react';
 const SliderComponet = ({ defaultValue, step, handleChange, label, adjustedAmount, minAmount, maxAmount, unit }) => {
   return (
     <Stack spacing={1}>
-      <Stack spacing={3}>
+      <Stack spacing={2}>
         <Typography>{label}</Typography>
         <Typography>{adjustedAmount}</Typography>
       </Stack>
